@@ -1,0 +1,29 @@
+databases:
+  hosts:
+    db01:
+      ansible_host: 192.168.9.133
+      http_port: 3306
+
+webservers:
+  hosts:
+    web01:
+      ansible_host: 192.168.9.132
+      http_port: 80
+
+webfirewalls:
+  hosts:
+    waf01: 
+      ansible_host: 192.168.9.131
+      http_port: 443
+
+network:
+  children:
+    webfirewalls:
+
+datacenter:
+  children:
+    network:
+    webservers:
+    databases:
+  vars:
+    ansible_user: ghost
