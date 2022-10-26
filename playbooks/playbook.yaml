@@ -1,6 +1,6 @@
-# author: Christian TANKEU
-# pseudo: GhostSecurity
-# email: tankeuchristian1@gmail.com
+# Author: Christian TANKEU
+# Pseudo: GhostSecurity
+# Email: tankeuchristian1@gmail.com
 
 - name: UPDATE WEB SERVERS
   hosts: webservers
