@@ -1,6 +1,5 @@
 # Author: Christian TANKEU
-# Pseudo: Ghostsecurity
+# Pseudo: GhostSecurity
 # Email: tankeuchristian1@gmail.com
-
 # Formation-Ansible
 
