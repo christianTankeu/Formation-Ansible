@@ -1,5 +1,5 @@
-- name: my firs play
-  hosts: MyVirtualMachines
+- name: my first play
+  hosts: datacenter
   tasks:
     - name: Ping my hosts
       ansible.builtin.ping:
