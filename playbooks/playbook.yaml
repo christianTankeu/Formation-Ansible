@@ -1,8 +1,29 @@
-- name: my first play
-  hosts: datacenter
+# AUTHOR: Christian TANKEU
+# PSEUDO: GhostSecurity
+# EMAIL: tankeuchristian1@gmail.com
+
+- name: UPDATE WEB SERVERS
+  hosts: webservers
+  become: true
   tasks:
-    - name: Ping my hosts
-      ansible.builtin.ping:
-    - name: Print message
-      ansible.builtin.debug:
-        msg: Hello world!
+    - name: INSTALLATION NGINX SERVER
+      ansible.builtin.apt:
+        name: nginx
+        state: present
+    - name: STARTING NGINX SERVER
+      ansible.builtin.service:
+        name: nginx
+        state: started
+
+- name: UPDATE DATABASE SERVERS
+  hosts: databases
+  become: true
+  tasks:
+    - name: INSTALLATION MYSQL SGBD RELATIONAL
+      ansible.builtin.apt:
+        name: mysql-server
+        state: present
+    - name: STARTING MYSQL DATABASE
+      ansible.builtin.service:
+        name: mysql
+        state: started
