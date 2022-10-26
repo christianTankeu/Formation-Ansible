@@ -15,7 +15,7 @@
         name: nginx
         state: started
 
-- name: UPDATE DATABASE SERVERS
+- name: UPDATE DATABASE SERVER
   hosts: databases
   become: true
   tasks:
