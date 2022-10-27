@@ -1,4 +1,4 @@
-# Group of VMs for database servers 
+# Group of VMs for database servers
 databases:
   hosts:
     db01:
@@ -15,7 +15,7 @@ webservers:
 # Group of VMs for web application firewall
 webfirewalls:
   hosts:
-    waf01: 
+    waf01:
       ansible_host: 192.168.9.131
       http_port: 443
 
