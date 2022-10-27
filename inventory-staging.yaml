@@ -1,0 +1,34 @@
+# Group of VMs for database servers 
+databases:
+  hosts:
+    db01:
+      ansible_host: 192.168.9.133
+      http_port: 3306
+
+# Group of VMs for web servers
+webservers:
+  hosts:
+    web01:
+      ansible_host: 192.168.9.132
+      http_port: 80
+
+# Group of VMs for web application firewall
+webfirewalls:
+  hosts:
+    waf01: 
+      ansible_host: 192.168.9.131
+      http_port: 443
+
+# Group contain the children groups for network
+network:
+  children:
+    webfirewalls:
+
+# Group contain all the children groups and variable of global infrastructure
+datacenter:
+  children:
+    network:
+    webservers:
+    databases:
+  vars:
+    ansible_user: ghost
