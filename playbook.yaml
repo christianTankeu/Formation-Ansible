@@ -4,12 +4,13 @@
 
 - name: TEST BOUCLE
   hosts: webservers
-  become: true
 
   tasks:
     - name: Register loop output as a variable
-      ansible.builtin.shell: "echo {{ item }}"
+      ansible.builtin.command:
+        cmd: "echo {{ item }}"
       loop:
         - "one"
         - "two"
       register: echo
+      changed_when: false
