@@ -3,8 +3,8 @@
 # Email: tankeuchristian1@gmail.com
 
 - name: TEST BOUCLE
-  hosts: all
-  become: yes
+  hosts: webservers
+  become: true
 
   tasks:
     - name: Register loop output as a variable
