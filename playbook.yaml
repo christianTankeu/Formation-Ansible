@@ -2,30 +2,9 @@
 # Pseudo: GhostSecurity
 # Email: tankeuchristian1@gmail.com
 
-- name: UPDATE WEB SERVERS
-  hosts: webservers
-  become: true
-
-  tasks:
-    - name: INSTALLATION NGINX SERVER
-      ansible.builtin.apt:
-        name: nginx
-        state: present
-    - name: STARTING NGINX SERVER
-      ansible.builtin.service:
-        name: nginx
-        state: started
-
-- name: UPDATE DATABASE SERVER
-  hosts: databases
-  become: true
-
-  tasks:
-    - name: INSTALLATION MYSQL SGBD RELATIONAL
-      ansible.builtin.apt:
-        name: mysql-server
-        state: present
-    - name: STARTING MYSQL DATABASE
-      ansible.builtin.service:
-        name: mysql
-        state: started
+- name: Register loop output as a variable
+  ansible.builtin.shell: "echo {{ item }}"
+  loop:
+    - "one"
+    - "two"
+  register: echo
