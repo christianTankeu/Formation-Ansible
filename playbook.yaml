@@ -2,9 +2,14 @@
 # Pseudo: GhostSecurity
 # Email: tankeuchristian1@gmail.com
 
-- name: Register loop output as a variable
-  ansible.builtin.shell: "echo {{ item }}"
-  loop:
-    - "one"
-    - "two"
-  register: echo
+- name: TEST BOUCLE
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Register loop output as a variable
+      ansible.builtin.shell: "echo {{ item }}"
+      loop:
+        - "one"
+        - "two"
+      register: echo
