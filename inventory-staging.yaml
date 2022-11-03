@@ -12,6 +12,7 @@ webservers:
       ansible_host: 192.168.9.132
       http_port: 80
 
+
 # Group of VMs for web application firewall
 webfirewalls:
   hosts:

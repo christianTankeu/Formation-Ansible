@@ -6,16 +6,8 @@
   hosts: webservers
 
   tasks:
-    - name: Register loop output as a variable
+    - name: Copier ficher de host vers web01
       ansible.builtin.command:
-        cmd: "echo {{ item }}"
-      loop:
-        - "one"
-        - "two"
-      register: echo
+        cmd: rsync -a playbook.yaml {{ inventory_hostname }}:~/
       changed_when: false
-    - name: fdsdfg
-      ansible.builtin.fail:
-        msg: "La commande ({{ item.cmd }})"
-      when: item.rc != 0
-      loop: "{{ echo.results }}"
+      delegate_to: 127.0.0.1
