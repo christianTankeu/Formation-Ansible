@@ -11,4 +11,12 @@
         cmd: ls -l
       when:
         - ansible_facts['os_family'] == "Debian"
-        - ansible_facts['distribution_major_version'] == "6"
+        - ansible_facts['lsb']['major_release'] == "19"
+      register: list
+    - name: Afficher les resultats
+      ansible.builtin.command:
+        cmd: echo "{{ list.stdout.find('chris') }}"
+      changed_when: false
+    - name: Debug
+      ansible.builtin.debug:
+        msg: "{{ list.stdout }}"
