@@ -6,8 +6,9 @@
   hosts: webservers
 
   tasks:
-    - name: Copier ficher de host vers web01
+    - name: Lister les fichers
       ansible.builtin.command:
-        cmd: rsync -a playbook.yaml {{ inventory_hostname }}:~/
-      changed_when: false
-      delegate_to: 127.0.0.1
+        cmd: ls -l
+      when:
+        - ansible_facts['os_family'] == "Debian"
+        - ansible_facts['distribution_major_version'] == "6"
