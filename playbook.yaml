@@ -2,12 +2,8 @@
 # Pseudo: GhostSecurity
 # Email: tankeuchristian1@gmail.com
 
-- name: TEST BOUCLE
+- name: TEST VARIABLE ENREGISTREE
   hosts: datacenter
-
-  vars:
-    epic: true
-    monumental: "yes"
 
   tasks:
     - name: Lister les fichers
@@ -25,3 +21,20 @@
     - name: Lister les repertoires home_dirs
       ansible.builtin.debug:
         msg: "{{ home_dirs.stdout_lines }}"
+
+- name: TEST VARIABLE
+  hosts: webservers
+
+  vars:
+    epic: true
+    monumental: "yes"
+
+  tasks:
+    - name: Lancer la commande si epic ou monumental est vraie
+      ansible.builtin.command:
+        cmd: echo "C'est epic"
+      when: epic or monumental | bool
+    - name: Lancer la commande si epic est faux
+      ansible.builtin.command:
+        cmd: echo "c'est pas epic"
+      when: not epic
