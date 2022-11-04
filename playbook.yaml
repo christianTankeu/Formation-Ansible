@@ -44,4 +44,4 @@
 
   vars_files:
     - "vars/common.yaml"
-    - ["vars/{{ ansible_facts['os_family']}}.yaml, "vars/os_defaults.yaml"]
+    - ["vars/{{ ansible_facts['os_family']}}.yaml", "vars/os_defaults.yaml"]
