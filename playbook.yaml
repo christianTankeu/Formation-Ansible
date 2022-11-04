@@ -24,8 +24,13 @@
           ansible.builtin.debug:
             msg: "{{ home_dirs.stdout_lines }}"
       when: ansible_facts['distribution'] == 'Ubuntu'
-      ignore_errors: true
-
+      rescue:
+        - name: Afficher les erreurs
+          ansible.builtin.debug:
+            msg: "une erreur s'est produite"
+        - name: lancer toujours les declencheurs
+          ansible.builtin.meta:
+            free_form: flush_handlers
 - name: TEST VARIABLE
   hosts: webservers
 
