@@ -6,21 +6,25 @@
   hosts: datacenter
 
   tasks:
-    - name: Lister les fichers
-      ansible.builtin.command:
-        cmd: ls -l
-      when:
-        - ansible_facts['os_family'] == "Debian"
-        - ansible_facts['lsb']['major_release'] == "19"
-      register: list
-    - name: Recuperer la liste des repertoires home
-      ansible.builtin.command:
-        cmd: ls /home
-      changed_when: false
-      register: home_dirs
-    - name: Lister les repertoires home_dirs
-      ansible.builtin.debug:
-        msg: "{{ home_dirs.stdout_lines }}"
+    - name: Test des variable
+      block:
+        - name: Lister les fichers
+          ansible.builtin.command:
+            cmd: ls -l
+          when:
+            - ansible_facts['os_family'] == "Debian"
+            - ansible_facts['lsb']['major_release'] == "19"
+          register: list
+        - name: Recuperer la liste des repertoires home
+          ansible.builtin.command:
+            cmd: ls /home
+          changed_when: false
+          register: home_dirs
+        - name: Lister les repertoires home_dirs
+          ansible.builtin.debug:
+            msg: "{{ home_dirs.stdout_lines }}"
+      when: ansible_facts['distribution'] == 'Ubuntu'
+      ignore_errors: true
 
 - name: TEST VARIABLE
   hosts: webservers
@@ -38,10 +42,3 @@
       ansible.builtin.command:
         cmd: echo "c'est pas epic"
       when: not epic
-
-- name: Tests
-  hosts: webservers
-
-  vars_files:
-    - "vars/common.yaml"
-    - "['vars/{{ ansible_facts['os_family'] }}.yaml', 'vars/os_defaults.yaml']"
