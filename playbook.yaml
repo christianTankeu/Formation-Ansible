@@ -3,7 +3,11 @@
 # Email: tankeuchristian1@gmail.com
 
 - name: TEST BOUCLE
-  hosts: webservers
+  hosts: datacenter
+
+  vars:
+    epic: true
+    monumental: "yes"
 
   tasks:
     - name: Lister les fichers
@@ -13,10 +17,11 @@
         - ansible_facts['os_family'] == "Debian"
         - ansible_facts['lsb']['major_release'] == "19"
       register: list
-    - name: Afficher les resultats
+    - name: Recuperer la liste des repertoires home
       ansible.builtin.command:
-        cmd: echo "{{ list.stdout.find('chris') }}"
+        cmd: ls /home
       changed_when: false
-    - name: Debug
+      register: home_dirs
+    - name: Lister les repertoires home_dirs
       ansible.builtin.debug:
-        msg: "{{ list.stdout }}"
+        msg: "{{ home_dirs.stdout_lines }}"
