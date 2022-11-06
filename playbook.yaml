@@ -33,20 +33,32 @@
             free_form: flush_handlers
 - name: TEST VARIABLE
   hosts: webservers
+  ignore_unreachable: true
+  force_handlers: true
+  any_errors_fatal: true
 
   vars:
     epic: true
     monumental: "yes"
+    proxy_env:
+      http_proxy: http://proxy.example.com:8080
 
   tasks:
     - name: Lancer la commande si epic ou monumental est vraie
       ansible.builtin.command:
         cmd: echo "C'est epic"
       when: epic or monumental | bool
+      ignore_unreachable: false
+      environment:
+        http_proxy: "{{ http_proxy }}"
     - name: Lancer la commande si epic est faux
       ansible.builtin.command:
         cmd: echo "c'est pas epic"
       when: not epic
+    - name: reactive hosts
+      ansible.builtin.meta:
+        free_form: clear_host_errors
+      notify: restart web services
 
   handlers:
     - name: Restart memcached
