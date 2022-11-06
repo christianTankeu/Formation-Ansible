@@ -1,4 +1,4 @@
-# File: vars/web.yaml
+# File: vars/group_vars/webservers.yaml
 # Contient les variables necessaires pour le group webservers
 
 ntp_server: ntp.bos.example.com
