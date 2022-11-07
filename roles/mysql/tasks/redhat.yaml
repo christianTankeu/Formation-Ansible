@@ -1,4 +1,0 @@
-- name: Install web server
-  ansible.builtin.yum:
-    name: "httpd"
-    state: present
