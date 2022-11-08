@@ -2,7 +2,8 @@
 # Pseudo: GhostSecurity
 # Email: tankeuchristian1@gmail.com
 
-- hosts: webservers
+- name: dsfsdfsd
+  hosts: webservers
   roles:
     - common
     - apache
