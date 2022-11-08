@@ -1,0 +1,5 @@
+# roles/common/meta/argument_specs.yaml
+
+argument_specs:
+  main:
+    short_description: Le main est le point d'entree de mon role commun
