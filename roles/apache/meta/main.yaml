@@ -1,5 +1,4 @@
 # roles/apache/meta/main.yaml
 
 dependencies:
-  - role: commun
-
+  - role: common
